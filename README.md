@@ -1,6 +1,6 @@
 # JPDB KanjiVG Image Replacer
 
-Replaces the default kanji images on JPDB.io with kanji images from KanjiVG.
+Replaces the default kanji images on [jpdb.io](https://jpdb.io/) with kanji images from KanjiVG.
 
 The default kanji images are in a typeface style, which is not optimal for learning to write the kanji by hand.
 The replacement images follow the handwriting style found in Japanese schoolbooks.
