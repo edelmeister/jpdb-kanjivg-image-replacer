@@ -1,0 +1,47 @@
+// ==UserScript==
+// @name         JPDB KanjiVG Image Replacer
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Replace kanji image on jpdb.io with KanjiVG image
+// @author       You
+// @match        https://jpdb.io/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=jpdb.io
+// @grant        GM_xmlhttpRequest
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    console.log('Script is running'); // This will log that your script is running
+
+    const linkElement = document.querySelector('a.kanji.plain'); // Find the link element with the kanji character
+    if (!linkElement) return; // Exit if the link element is not found
+    console.log(linkElement); // Log the link element
+
+    const hrefValue = linkElement.getAttribute('href'); // Get the href attribute value from the link element
+    console.log(hrefValue); // Log the href attribute value
+
+    const kanjiWithHash = hrefValue.split('/')[2]; // Split the href value by '/' and get the part that contains the kanji character and '#a'
+    const kanji = kanjiWithHash.split('#')[0]; // Split that part by '#' to get just the kanji character
+    console.log(kanji); // Log the kanji character
+
+    const unicodeHex = kanji.charCodeAt(0).toString(16).toLowerCase().padStart(5, '0'); // Convert the kanji character to lowercase hexadecimal unicode value and pad it with zeros to 5 characters
+    console.log(unicodeHex); // Log the unicode hexadecimal value
+
+    const url = `https://raw.githubusercontent.com/KanjiVG/kanjivg/master/kanji/${unicodeHex}.svg`; // Construct the URL to the SVG image on KanjiVG repository
+    console.log(url); // Log the URL
+
+    // Function to fetch the SVG content and replace the image on jpdb.io
+    GM_xmlhttpRequest({
+        method: "GET",
+        url: url,
+        onload: function(response) {
+            const svgElement = document.querySelector('svg.kanji'); // Find the SVG element on jpdb.io
+            if (svgElement) {
+                svgElement.outerHTML = response.responseText; // Replace the content of the SVG element with the fetched SVG content
+            } else {
+                console.log('SVG element not found'); // Log if the SVG element is not found
+            }
+        }
+    });
+})();
