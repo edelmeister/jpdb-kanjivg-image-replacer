@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB KanjiVG Image Replacer
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Replace kanji image on jpdb.io with KanjiVG image
 // @author       You
 // @match        https://jpdb.io/*
@@ -12,6 +12,18 @@
 
 (function() {
     'use strict';
+
+    const customCSS = `
+        .kanji.plain svg {
+            width: 300px !important;
+            height: 300px !important;
+        }
+    `;
+
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = customCSS;
+    document.head.appendChild(styleSheet);
 
     console.log('Script is running'); // This will log that your script is running
 
