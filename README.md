@@ -10,7 +10,6 @@ This user script is also shared on [Greasy Fork](https://greasyfork.org/en/scrip
 ## Known issues
 
 - Doesn't work well with JPDB:s dark mode due to the images being black. I recommend using light mode because of this.
-- The replacement image is smaller than the default. I wasn't able to scale the image up.
 
 ## Attribution
 
