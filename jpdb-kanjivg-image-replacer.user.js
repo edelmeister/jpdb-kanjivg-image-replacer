@@ -37,6 +37,10 @@
         method: "GET",
         url: url,
         onload: function(response) {
+            if (response.status === 404) {
+                console.log('SVG image not found, not replacing the image.');
+                return; // Exit the function if the SVG image is not found
+            }
             const svgElement = document.querySelector('svg.kanji'); // Find the SVG element on jpdb.io
             if (svgElement) {
                 svgElement.outerHTML = response.responseText; // Replace the content of the SVG element with the fetched SVG content
