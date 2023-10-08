@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPDB KanjiVG Image Replacer
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Replace kanji image on jpdb.io with KanjiVG image
 // @author       You
 // @match        https://jpdb.io/*
